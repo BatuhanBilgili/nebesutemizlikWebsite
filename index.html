@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nebesu Temizlik Hizmetleri - İzmir Karşıyaka</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            background: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80') center/cover no-repeat;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 600px;
+            margin: 0;
+            margin-left: 30%;
+            backdrop-filter: blur(2px);
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            color: white;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-content h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content p {
+            text-align: center;
+            margin-bottom: 2rem;
+            max-width: 100%;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .hero-card {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-right: 5%;
+            width: 300px;
+        }
+
+        .contact-info {
+            color: #333;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            font-size: 1.5rem;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Müşteri Yorumları Bölümü */
+        .reviews-section {
+            padding: 3rem 2rem;
+            background: #f8fafc;
+        }
+
+        .reviews-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reviews-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .reviews-filters {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .reviews-filters select {
+            padding: 0.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            min-width: 120px;
+        }
+
+        .reviews-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            transition: transform 0.2s;
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .review-rating {
+            color: #fbbf24;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .review-service {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .review-text {
+            color: #4b5563;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .review-date {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        .load-more {
+            display: block;
+            width: fit-content;
+            margin: 2rem auto;
+            padding: 0.75rem 2rem;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .load-more:hover {
+            background: #4f46e5;
+        }
+
+        .no-reviews {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .reviews-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .reviews-filters {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .reviews-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-info i {
+            color: #007bff;
+            width: 20px;
+        }
+
+        /* Float Buttons - Instagram (match WhatsApp style) */
+        .instagram-float {
+            position: fixed;
+            bottom: 100px; /* align with WhatsApp button */
+            right: 20px; /* sit to the left of WhatsApp */
+            z-index: 1000;
+        }
+
+        .instagram-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .instagram-float a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+        }
+
+        /* Responsive düzeltmeler */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                min-height: auto;
+                padding: 3rem 1rem;
+            }
+            
+            .hero-content {
+                margin: 0 auto 2rem;
+            }
+            
+            .hero-card {
+                margin: 0 auto;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>Nebesu Temizlik</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Anasayfa</a></li>
+                    <li><a href="#services">Hizmetler</a></li>
+                    <li><a href="#areas">Bölgeler</a></li>
+                    <li><a href="#reviews">Yorumlar</a></li>
+                    <li><a href="#contact">İletişim</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Profesyonel Temizlik Hizmetleri</h1>
+            <p>İzmir Karşıyaka'nın güvenilir temizlik firması. Ev, ofis, apartman ve inşaat sonrası temizlik hizmetleri.</p>
+            <div class="hero-buttons">
+                <a href="tel:05317951590" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> Hemen Ara
+                </a>
+                <a href="https://wa.me/905317951590" class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="hero-card">
+            <div class="contact-info">
+                <h3>Hızlı İletişim</h3>
+                <p><i class="fas fa-phone"></i> <a href="tel:05317951590" style="color: inherit; text-decoration: none;">0531 795 15 90</a></p>
+                <p><i class="fas fa-map-marker-alt"></i> Karşıyaka, İzmir</p>
+                <p><i class="fas fa-clock"></i> 7/24 Hizmet</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <h3>Hizmet Arama</h3>
+                <div class="search-input">
+                    <input type="text" id="serviceSearch" placeholder="Hangi hizmeti arıyorsunuz? (örn: ev temizliği, ofis temizliği)">
+                    <button onclick="searchServices()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div id="searchResults" class="search-results"></div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Hizmetlerimiz</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Ev Temizliği" loading="lazy">
+                    </div>
+                    <h3>Ev Temizliği</h3>
+                    <p>Günlük, haftalık ve aylık ev temizlik hizmetleri</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Ofis Temizliği" loading="lazy">
+                    </div>
+                    <h3>Ofis Temizliği</h3>
+                    <p>Profesyonel ofis ve işyeri temizlik hizmetleri</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Apartman Temizliği" loading="lazy">
+                    </div>
+                    <h3>Apartman Temizliği</h3>
+                    <p>Apartman ve site ortak alan temizlik hizmetleri</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="İnşaat Sonrası Temizlik" loading="lazy">
+                    </div>
+                    <h3>İnşaat Sonrası Temizlik</h3>
+                    <p>İnşaat ve tadilat sonrası derinlemesine temizlik</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Villa Temizliği" loading="lazy">
+                    </div>
+                    <h3>Villa Temizliği</h3>
+                    <p>Lüks villa ve müstakil ev temizlik hizmetleri</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1703538239643-b6d0a2f13d4a?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Merdiven Temizliği" loading="lazy">
+                    </div>
+                    <h3>Merdiven Temizliği</h3>
+                    <p>Apartman ve bina merdiven temizlik hizmetleri</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Areas Section -->
+    <section id="areas" class="service-areas">
+        <div class="container">
+            <h2>Hizmet Bölgelerimiz</h2>
+            <div class="areas-content">
+                <div class="areas-map">
+                    <div class="map-container">
+                        <h3>İzmir ve Çevre İlçeler</h3>
+                        <div class="areas-grid">
+                            <div class="area-item">Karşıyaka</div>
+                            <div class="area-item">Çiğli</div>
+                            <div class="area-item">Bayraklı</div>
+                            <div class="area-item">Bornova</div>
+                            <div class="area-item">Konak</div>
+                            <div class="area-item">Alsancak</div>
+                            <div class="area-item">Çeşme</div>
+                            <div class="area-item">Urla</div>
+                            <div class="area-item">Seferihisar</div>
+                            <div class="area-item">Foça</div>
+                            <div class="area-item">Dikili</div>
+                            <div class="area-item">Bergama</div>
+                            <div class="area-item">Aliağa</div>
+                            <div class="area-item">Kemalpaşa</div>
+                            <div class="area-item">Ödemiş</div>
+                            <div class="area-item">Tire</div>
+                            <div class="area-item">Selçuk</div>
+                            <div class="area-item">Torbalı</div>
+                            <div class="area-item">Karaburun</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="areas-info">
+                    <h3>Ana Ofis</h3>
+                    <div class="office-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Bahriye Üçok Mahallesi 1762. Sokak No: 9 Daire: 1</p>
+                        <p><i class="fas fa-city"></i> Karşıyaka, İzmir</p>
+                        <p><i class="fas fa-clock"></i> Pazartesi - Cumartesi: 09:00 - 18:00</p>
+                        <p><i class="fas fa-phone"></i> 0531 795 15 90</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2>Müşteri Yorumları</h2>
+            <div class="reviews-content">
+                <div class="reviews-left">
+                    <div class="reviews-filters">
+                        <select id="ratingFilter">
+                            <option value="">Tüm Puanlar</option>
+                            <option value="5">5 Yıldız</option>
+                            <option value="4">4 Yıldız</option>
+                            <option value="3">3 Yıldız</option>
+                            <option value="2">2 Yıldız</option>
+                            <option value="1">1 Yıldız</option>
+                        </select>
+                        <select id="serviceFilter">
+                            <option value="">Tüm Hizmetler</option>
+                            <option value="ev-temizligi">Ev Temizliği</option>
+                            <option value="ofis-temizligi">Ofis Temizliği</option>
+                            <option value="apartman-temizligi">Apartman Temizliği</option>
+                            <option value="insaat-sonrasi">İnşaat Sonrası Temizlik</option>
+                            <option value="villa-temizligi">Villa Temizliği</option>
+                            <option value="merdiven-temizligi">Merdiven Temizliği</option>
+                        </select>
+                    </div>
+
+                    <div class="reviews-grid" id="reviewsGrid"></div>
+
+                    <button id="loadMoreReviews" class="load-more" style="display: none;">
+                        Daha Fazla Yorum Göster
+                    </button>
+                </div>
+
+                <div class="add-review">
+                    <h3>Yorumunuzu Paylaşın</h3>
+                    <form id="reviewForm">
+                        <div class="form-group">
+                            <input type="text" id="reviewerName" placeholder="Adınız" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="reviewerEmail" placeholder="E-posta (isteğe bağlı)">
+                        </div>
+                        <div class="form-group">
+                            <select id="serviceType" required>
+                                <option value="">Hangi hizmeti aldınız?</option>
+                                <option value="ev-temizligi">Ev Temizliği</option>
+                                <option value="ofis-temizligi">Ofis Temizliği</option>
+                                <option value="apartman-temizligi">Apartman Temizliği</option>
+                                <option value="insaat-sonrasi">İnşaat Sonrası Temizlik</option>
+                                <option value="villa-temizligi">Villa Temizliği</option>
+                                <option value="merdiven-temizligi">Merdiven Temizliği</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="reviewText" placeholder="Yorumunuzu yazın..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Puanınız:</label>
+                            <select id="reviewRating" required>
+                                <option value="5">5</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                                <option value="1">1</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Yorumu Gönder</button>
+                    </form>
+                    <div id="reviewMessage" style="margin-top:12px;color:#374151;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>İletişim</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Telefon</h3>
+                            <p><a href="tel:05317951590">0531 795 15 90</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h3>WhatsApp</h3>
+                            <p><a href="https://wa.me/905317951590" target="_blank">WhatsApp ile Yazış</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Adres</h3>
+                            <p>Bahriye Üçok Mahallesi 1762. Sokak No: 9 Daire: 1<br>Karşıyaka, İzmir</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Çalışma Saatleri</h3>
+                            <p>Pazartesi - Cumartesi: 09:00 - 18:00<br>Pazar: Kapalı</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Hızlı Teklif Alın</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="contactName" placeholder="Adınız Soyadınız" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="contactPhone" placeholder="Telefon Numaranız" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="contactService" required>
+                                <option value="">Hangi hizmeti istiyorsunuz?</option>
+                                <option value="ev-temizligi">Ev Temizliği</option>
+                                <option value="ofis-temizligi">Ofis Temizliği</option>
+                                <option value="apartman-temizligi">Apartman Temizliği</option>
+                                <option value="insaat-sonrasi">İnşaat Sonrası Temizlik</option>
+                                <option value="villa-temizligi">Villa Temizliği</option>
+                                <option value="merdiven-temizligi">Merdiven Temizliği</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="contactMessage" placeholder="Mesajınız (isteğe bağlı)"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Teklif İste</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Nebesu Temizlik Hizmetleri</h3>
+                    <p>İzmir Karşıyaka'nın güvenilir temizlik firması. Profesyonel hizmet anlayışıyla müşteri memnuniyetini ön planda tutuyoruz.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Hızlı Linkler</h3>
+                    <ul>
+                        <li><a href="#home">Anasayfa</a></li>
+                        <li><a href="#services">Hizmetler</a></li>
+                        <li><a href="#areas">Bölgeler</a></li>
+                        <li><a href="#reviews">Yorumlar</a></li>
+                        <li><a href="#contact">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>İletişim</h3>
+                    <p><i class="fas fa-phone"></i> 0531 795 15 90</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Karşıyaka, İzmir</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/905317951590" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nebesu Temizlik Hizmetleri. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Float Buttons -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/905317951590" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+    <div class="instagram-float">
+        <a href="https://www.instagram.com/nbstemizlik" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
