@@ -17,7 +17,9 @@ const services = [
     { name: "Apartman Temizliği", description: "Apartman ve site ortak alan temizlik hizmetleri", keywords: ["apartman", "site", "ortak", "alan", "temizlik"] },
     { name: "İnşaat Sonrası Temizlik", description: "İnşaat ve tadilat sonrası derinlemesine temizlik", keywords: ["inşaat", "tadilat", "sonrası", "derinlemesine", "temizlik"] },
     { name: "Villa Temizliği", description: "Lüks villa ve müstakil ev temizlik hizmetleri", keywords: ["villa", "müstakil", "lüks", "ev", "temizlik"] },
-    { name: "Merdiven Temizliği", description: "Apartman ve bina merdiven temizlik hizmetleri", keywords: ["merdiven", "apartman", "bina", "temizlik"] }
+    { name: "Merdiven Temizliği", description: "Apartman ve bina merdiven temizlik hizmetleri", keywords: ["merdiven", "apartman", "bina", "temizlik"] },
+    { name: "Zemin Cilalama ve Temizliği", description: "Mermer, granit, parke ve sert zeminlerde cilalama ve derin temizlik", keywords: ["zemin", "cilalama", "mermer", "granit", "parke"] },
+    { name: "Yat Temizliği", description: "Marina ve iskelelerde iç-dış yat temizliği", keywords: ["yat", "tekne", "marina", "temizlik"] }
 ];
 
 // Initialize the application
@@ -448,7 +450,9 @@ function getServiceDisplayName(service) {
         'apartman-temizligi': 'Apartman Temizliği',
         'insaat-sonrasi': 'İnşaat Sonrası Temizlik',
         'villa-temizligi': 'Villa Temizliği',
-        'merdiven-temizligi': 'Merdiven Temizliği'
+        'merdiven-temizligi': 'Merdiven Temizliği',
+        'zemin-cilalama': 'Zemin Cilalama ve Temizliği',
+        'yat-temizligi': 'Yat Temizliği'
     };
     return serviceMap[service] || service;
 }
