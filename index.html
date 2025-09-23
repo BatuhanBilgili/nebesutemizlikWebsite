@@ -265,11 +265,14 @@
                 flex-direction: column;
                 text-align: center;
                 min-height: auto;
-                padding: 3rem 1rem;
+                /* Fixed header yüksekliği (yaklaşık 70-80px) için ekstra boşluk */
+                padding: 120px 1rem 2rem;
             }
             
             .hero-content {
                 margin: 0 auto 2rem;
+                /* Başlığın header ile çakışmasını önlemek için ufak boşluk */
+                margin-top: 0.5rem;
             }
             
             .hero-card {
